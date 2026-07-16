@@ -157,13 +157,20 @@ export default function App() {
     
     try {
       // Creating a physical anchor element and clicking it is highly reliable inside iframe environments
-      const link = document.createElement("a");
-      link.href = mailtoUrl;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      const body = encodeURIComponent(finalBody);
+      const subject = encodeURIComponent(customSubject);
+
+      // Try Gmail app first
+      window.location.href =
+        `googlegmail://co?to=${emailTo}&subject=${subject}&body=${body}`;
+
+      // Fallback to Gmail web after a short delay
+      setTimeout(() => {
+        window.open(
+          `https://mail.google.com/mail/?view=cm&fs=1&to=${emailTo}&su=${subject}&body=${body}`,
+          "_blank"
+        );
+      }, 1200);
     } catch (error) {
       // Fallback
       window.location.href = mailtoUrl;
