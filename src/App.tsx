@@ -192,6 +192,19 @@ export default function App() {
     });
   };
 
+
+  const copyRecipientEmail = async () => {
+    if (!selectedRecipient) return;
+    await navigator.clipboard.writeText(selectedRecipient.email);
+    triggerToast("Recipient email copied!");
+  };
+
+  const copyEmailMessage = async () => {
+    const finalBody = `${customBody}\n\n${userName || "Concerned Citizen"}`;
+    await navigator.clipboard.writeText(finalBody);
+    triggerToast("Email message copied!");
+  };
+
   // Submit Support Form
   const handleAddSupport = (e: React.FormEvent) => {
     e.preventDefault();
@@ -858,7 +871,7 @@ export default function App() {
                         <div className="h-[1px] bg-white/10 flex-grow" />
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="grid grid-cols-2 gap-3">
                         <button 
                           onClick={handleCopyEmailDraft}
                           className="py-3 bg-white/5 hover:bg-white/10 rounded-lg font-sans font-bold text-[11px] text-primary transition-all uppercase tracking-wider flex items-center justify-center gap-2 border border-white/10 cursor-pointer"
@@ -867,7 +880,24 @@ export default function App() {
                           <span>Copy Draft Template</span>
                         </button>
 
-                        <a 
+                        
+                        <button
+                          onClick={copyRecipientEmail}
+                          className="py-3 bg-white/5 hover:bg-white/10 rounded-lg font-sans font-bold text-[11px] text-primary transition-all uppercase tracking-wider flex items-center justify-center gap-2 border border-white/10 cursor-pointer"
+                        >
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>Copy Recipient Email</span>
+                        </button>
+
+                        <button
+                          onClick={copyEmailMessage}
+                          className="py-3 bg-white/5 hover:bg-white/10 rounded-lg font-sans font-bold text-[11px] text-primary transition-all uppercase tracking-wider flex items-center justify-center gap-2 border border-white/10 cursor-pointer"
+                        >
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>Copy Email Message</span>
+                        </button>
+
+<a 
                           href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(selectedRecipient.email)}&su=${encodeURIComponent(customSubject)}&body=${encodeURIComponent(customBody + '\n\n' + (userName || 'Concerned Citizen'))}`}
                           target="_blank"
                           rel="noopener noreferrer"
