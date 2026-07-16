@@ -619,7 +619,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-neutral-950/90 backdrop-blur-md"
+            className="fixed inset-0 z-[100] overflow-y-auto bg-neutral-950/90 backdrop-blur-md p-4"
             onClick={(e) => {
               if (e.target === e.currentTarget) {
                 setIsModalOpen(false);
@@ -631,7 +631,7 @@ export default function App() {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 15 }}
               transition={{ type: "spring", damping: 25, stiffness: 350 }}
-              className="glass w-full max-w-3xl rounded-2xl p-6 md:p-10 relative overflow-hidden shadow-2xl border border-white/10 bg-neutral-900"
+              className="glass w-full max-w-3xl my-10 rounded-2xl p-6 md:p-10 relative shadow-2xl border border-white/10 bg-neutral-900 max-h-[90vh] overflow-y-auto"
             >
               {/* Close Button */}
               <button 
