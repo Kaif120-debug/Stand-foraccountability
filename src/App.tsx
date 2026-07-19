@@ -767,6 +767,33 @@ export default function App() {
                         key={rec.email}
                         onClick={() => {
                           setSelectedRecipient(rec);
+                          if (rec.name === "Supreme Court of India") {
+                            setCustomSubject("Urgent Request for Protection of Peaceful Protesters");
+                            setCustomBody(`Hon'ble Supreme Court of India,
+
+We respectfully request your urgent attention to the safety of peaceful protesters. There are widespread concerns about a heavy police presence, and many participants fear for their safety.
+
+We kindly request that appropriate directions be issued to ensure that peaceful protesters are protected, their constitutional rights are respected, and that any use of force is exercised only when absolutely necessary and strictly in accordance with the law.
+
+We sincerely hope that all concerned authorities act with restraint and that every citizen remains safe.
+
+Thank you.
+
+Sincerely,`);
+                          } else {
+                            setCustomSubject("Request for Resignation and Accountability");
+                            setCustomBody(`Dear Sir/Madam,
+
+I am writing as a concerned citizen to express my disappointment regarding recent developments in the education system. In my view, these events have raised serious questions about accountability and public trust.
+
+I respectfully urge the leadership to consider whether the current Education Minister should resign and allow an impartial review of the situation. I believe that accepting responsibility and ensuring transparency are important steps toward restoring confidence in our education system.
+
+My intention is not to criticize individuals personally, but to encourage accountability and meaningful action in the public interest. I hope this concern will be given due consideration.
+
+Thank you for your time and attention.
+
+Sincerely,`);
+                          }
                           setModalTab("email-compose");
                         }}
                         className="glass p-5 rounded-xl text-left hover:border-white/30 transition-all group bg-white/5 flex flex-col justify-between space-y-4 cursor-pointer"
